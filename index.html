@@ -1,247 +1,273 @@
-Here is a completely redesigned version of the code.
-
-To improve the GUI, I have moved away from the "hacker terminal" look and designed an **elegant, modern wedding aesthetic** (using deep navy blues, gold accents, and elegant typography) while seamlessly blending in subtle GIS/Data themes (like topographic background patterns, coordinate styling, and clean data-table alignments).
-
-I have also updated the Google Maps search query to target **Central Market Roundabout, Katsina** so the pin drops accurately.
-
-You can replace your `index.html` with this updated code:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation | Muhammad & Husaina</title>
-    <!-- Import Elegant Fonts -->
+    
+    <!-- Import Tech Fonts for Better Readability -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --primary-bg: #0b192c; /* Deep Navy */
-            --card-bg: rgba(255, 255, 255, 0.95); /* Soft White */
-            --accent-gold: #d4af37; /* Elegant Gold */
-            --text-dark: #1a2530;
-            --text-light: #f8f9fa;
-        }
-
+        /* Base Reset */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body, html {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-dark);
-            min-height: 100vh;
-            overflow-x: hidden;
-            /* Subtle topographic/GIS map background effect */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                repeating-radial-gradient(circle at center, transparent 0, transparent 40px, rgba(255,255,255,0.03) 41px);
+        :root {
+            --bg-base: #0a192f;
+            --bg-card: rgba(17, 34, 64, 0.9);
+            --text-main: #ccd6f6; /* Soft off-white for highly readable main text */
+            --text-accent: #64ffda; /* Neon teal for tech highlights */
+            --text-dim: #8892b0;
         }
 
+        body, html {
+            font-family: 'Fira Code', monospace; 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            overflow-x: hidden;
+            height: 100%;
+            line-height: 1.6;
+        }
+
+        /* Subtle GIS / Data Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image:
+                linear-gradient(to right, rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+        
+        /* Radar / Topo overlay */
+        .topo-overlay {
+            position: fixed;
+            top: -50%; left: -50%; width: 200vw; height: 200vh;
+            background: radial-gradient(circle at center, transparent 40%, rgba(100,255,218,0.02) 41%, transparent 42%);
+            background-size: 200px 200px;
+            z-index: -1;
+        }
+
+        /* Main Container */
         .container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 40px auto;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 85vh;
         }
 
+        /* Invitation Card */
         .card {
-            background: var(--card-bg);
-            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
             padding: 50px 40px;
+            text-align: left; /* Left align for a more authentic code block feel */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-top: 5px solid var(--accent-gold);
-            border-bottom: 5px solid var(--accent-gold);
-            position: relative;
         }
 
-        /* Subtle GIS Node decorations */
-        .card::before, .card::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            left: 20px;
-        }
-        .card::before { top: 20px; }
-        .card::after { bottom: 20px; }
-
-        .header-text {
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        /* Typography */
+        .system-status {
             font-size: 0.85em;
-            color: #666;
+            color: var(--text-dim);
             margin-bottom: 30px;
-            font-weight: 600;
+            border-bottom: 1px dashed var(--text-dim);
+            padding-bottom: 10px;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8em;
-            color: var(--primary-bg);
-            line-height: 1.2;
-            margin: 10px 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 2.4em;
+            color: var(--text-main);
+            margin: 5px 0;
+            font-weight: 400;
         }
 
         .ampersand {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            color: var(--accent-gold);
-            font-style: italic;
-            margin: -10px 0;
+            font-size: 1.5em;
+            color: var(--text-accent);
+            margin: 10px 0;
+            padding-left: 10px;
         }
 
-        /* Data & Spatial Info Section */
-        .event-details {
-            margin: 40px 0;
-            display: grid;
-            gap: 20px;
+        /* Data Details Section */
+        .data-block {
+            background: #020c1b;
+            border-left: 3px solid var(--text-accent);
+            padding: 25px;
+            margin: 35px 0;
+            border-radius: 4px;
+            font-size: 1.05em;
         }
 
-        .detail-box {
-            background: #f8f9fa;
-            border-left: 3px solid var(--accent-gold);
-            padding: 15px 20px;
-            text-align: left;
-            border-radius: 0 8px 8px 0;
+        .data-row {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .detail-label {
-            font-size: 0.75em;
+        .data-key {
+            color: var(--text-accent);
+            font-size: 0.85em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888;
-            margin-bottom: 5px;
-            display: block;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
         }
 
-        .detail-value {
-            font-size: 1.1em;
+        .data-value {
+            color: var(--text-main);
             font-weight: 600;
-            color: var(--primary-bg);
         }
 
-        /* Map Styling */
-        .map-wrapper {
+        /* Interactive Map Container */
+        .map-container {
             margin-top: 20px;
-            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             height: 250px;
-            border: 1px solid #ddd;
+            width: 100%;
+            position: relative;
         }
 
-        .map-wrapper iframe {
+        .map-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
+            filter: grayscale(20%) contrast(1.1); /* Slightly blends the map into the theme */
         }
 
-        .gis-coords {
-            font-size: 0.75em;
-            color: #999;
-            margin-top: 10px;
-            font-family: monospace;
-            letter-spacing: 1px;
+        .map-overlay-text {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(2, 12, 27, 0.8);
+            color: var(--text-accent);
+            padding: 4px 8px;
+            font-size: 0.7em;
+            border: 1px solid var(--text-accent);
+            border-radius: 3px;
+            pointer-events: none; /* Lets you click the map under it */
         }
 
-        /* Button Styling */
-        .calendar-btn {
+        /* Button Styles */
+        .btn-calendar {
             display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            background-color: var(--primary-bg);
-            color: var(--text-light);
+            margin-top: 20px;
+            padding: 15px 25px;
+            background: transparent;
+            color: var(--text-accent);
+            border: 1px solid var(--text-accent);
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.85em;
-            border: 2px solid var(--primary-bg);
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
         }
 
-        .calendar-btn:hover {
-            background-color: transparent;
-            color: var(--primary-bg);
+        .btn-calendar:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
         }
 
+        /* Animations */
+        .typing-effect {
+            display: inline-block;
+            border-right: 2px solid var(--text-accent);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-accent); }
+        }
+
+        /* Responsive */
         @media (max-width: 600px) {
-            h1 { font-size: 2.2em; }
-            .card { padding: 40px 20px; }
-            .detail-box { padding: 12px 15px; }
+            h1 { font-size: 1.8em; }
+            .card { padding: 30px 20px; }
+            .data-block { padding: 15px; font-size: 0.95em; }
         }
     </style>
 </head>
 <body>
 
+    <div class="grid-background"></div>
+    <div class="topo-overlay"></div>
+
     <div class="container">
         <div class="card">
             
-            <div class="header-text">
-                Join us to celebrate the union of
+            <div class="system-status">
+                <span class="typing-effect">root@server:~$ ./init_wedding.sh</span>
             </div>
             
             <h1>Muhammad Sanusi Waziri</h1>
-            <div class="ampersand">&</div>
+            <div class="ampersand">&&</div>
             <h1>Husaina Abubakar Runka</h1>
 
-            <div class="event-details">
-                <!-- Date and Time aligned dynamically -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div class="detail-box">
-                        <span class="detail-label">Temporal Data (Date)</span>
-                        <span class="detail-value">Fri, Oct 30, 2026</span>
-                    </div>
-                    <div class="detail-box">
-                        <span class="detail-label">Timestamp (Time)</span>
-                        <span class="detail-value">11:00 AM</span>
-                    </div>
+            <div class="data-block">
+                <div class="data-row">
+                    <span class="data-key">const date = </span> 
+                    <span class="data-value">"Friday, 30th October 2026";</span>
                 </div>
-
-                <!-- Spatial Data (Venue) -->
-                <div class="detail-box">
-                    <span class="detail-label">Spatial Coordinates (Venue)</span>
-                    <span class="detail-value" style="font-size: 1em;">
-                        Masallacin Alhaji Sabo Zuciya, <br>
-                        Near Central Roundabout, Kofar Kwaya, Katsina.
+                
+                <div class="data-row">
+                    <span class="data-key">const time = </span> 
+                    <span class="data-value">"11:00 AM (WAT)";</span>
+                </div>
+                
+                <div class="data-row">
+                    <span class="data-key">const venue_coordinates = </span> 
+                    <span class="data-value">
+                        "Masallacin Alhaji Sabo Zuciya,<br>
+                        Near Central Roundabout, Kofar Kwaya, Katsina.";
                     </span>
                     
-                    <!-- Updated Map Embed targeting Central Market Roundabout -->
-                    <div class="map-wrapper">
-                        <!-- Removed 't=k' to use standard beautiful map view, updated 'q' to Central Market Roundabout -->
+                    <!-- GIS Satellite Map Embed targeting Kofar Kwaya specifically -->
+                    <div class="map-container">
+                        <div class="map-overlay-text">GIS SATELLITE LINK ACTIVE</div>
                         <iframe 
-                            src="https://maps.google.com/maps?q=Central+Market+Roundabout,+Katsina&z=16&ie=UTF8&iwloc=&output=embed" 
+                            src="https://maps.google.com/maps?q=Masallacin+Alhaji+Sabo+Zuciya,+Kofar+Kwaya,+Katsina&t=k&z=17&ie=UTF8&iwloc=&output=embed" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                    <div class="gis-coords">LAT: 12.9816° N | LONG: 7.6006° E</div>
                 </div>
             </div>
 
-            <!-- Calendar Link generated for Oct 30, 2026 at 11:00 AM WAT (10:00 AM UTC) -->
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Muhammad+&+Husaina&dates=20261030T100000Z/20261030T120000Z&details=Join+us+to+celebrate+the+union+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka!&location=Masallacin+Alhaji+Sabo+Zuciya,+Central+Market+Roundabout,+Katsina" 
+            <p style="color: var(--text-dim); font-size: 0.85em; text-align: center; margin-bottom: 20px;">
+                /* We look forward to successfully compiling this union with you */
+            </p>
+            
+            <!-- Calendar Link -->
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Muhammad+&+Husaina&dates=20261030T100000Z/20261030T120000Z&details=Join+us+to+celebrate+the+union+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka!&location=Masallacin+Alhaji+Sabo+Zuciya,+Near+Central+Roundabout,+Kofar+Kwaya,+Katsina" 
                target="_blank" 
                rel="noopener noreferrer" 
-               class="calendar-btn">
-                Add to Calendar
+               class="btn-calendar">
+                > [ EXECUTE: ADD_TO_CALENDAR ]
             </a>
 
         </div>
@@ -249,5 +275,3 @@ You can replace your `index.html` with this updated code:
 
 </body>
 </html>
-
-```
