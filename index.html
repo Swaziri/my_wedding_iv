@@ -1,247 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Muhammad & Husaina</title>
-    
-    <!-- Fonts: Inter for clean UI, Fira Code for Tech data -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Reset */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad &amp; Husaina — Nikkah Invitation</title>
+<meta name="description" content="You are invited to the Nikkah of Muhammad Sanusi Waziri and Husaina Abubakar Runka — Friday 30th October, 2026, Katsina.">
 
-        :root {
-            --bg-base: #090e17;
-            --bg-card: rgba(16, 24, 39, 0.85);
-            --bg-panel: rgba(30, 41, 59, 0.6);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Modern UI Blue */
-            --accent-glow: rgba(56, 189, 248, 0.2);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        body, html {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            overflow-x: hidden;
-            height: 100%;
-            line-height: 1.6;
-        }
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Subtle UI Grid Background */
-        .grid-background {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-        }
+  :root{
+    --bg-base:#090e17;
+    --bg-card: rgba(16, 24, 39, 0.85);
+    --bg-panel: rgba(30, 41, 59, 0.55);
+    --text-main:#f8fafc;
+    --text-muted:#8fa0b8;
+    --accent:#38bdf8;
+    --accent-soft: rgba(56, 189, 248, 0.14);
+    --accent-line: rgba(56, 189, 248, 0.32);
+    --gold:#e3b567;
+    --ok:#5eead4;
 
-        /* Main Container */
-        .container {
-            max-width: 750px;
-            margin: 40px auto;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 85vh;
-        }
+    --serif:'Newsreader', serif;
+    --mono:'Fira Code', monospace;
+    --body:'Inter', -apple-system, sans-serif;
+  }
 
-        /* UI Card */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 12px;
-            padding: 50px 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--accent-glow);
-            backdrop-filter: blur(12px);
-            width: 100%;
-        }
+  html, body{
+    background: var(--bg-base);
+    color: var(--text-main);
+    font-family: var(--body);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+  }
 
-        /* Header Section - CENTERED */
-        .header-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
 
-        .badge {
-            display: inline-block;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.75em;
-            color: var(--accent);
-            background: var(--accent-glow);
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
 
-        h1 {
-            font-size: 2.2em;
-            font-weight: 300;
-            margin: 5px 0;
-            letter-spacing: 1px;
-        }
+  /* ---------- live data-network backdrop ---------- */
+  #bg-canvas{
+    position: fixed; inset: 0; z-index: -2;
+    display: block; width: 100%; height: 100%;
+  }
+  .glow-background{
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 35% at 50% 4%, rgba(56,189,248,0.10), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 85% 90%, rgba(227,181,103,0.05), transparent 70%);
+  }
 
-        .ampersand {
-            font-size: 1.5em;
-            color: var(--accent);
-            margin: 15px 0;
-            font-family: 'Fira Code', monospace;
-        }
+  /* ---------- boot sequence overlay ---------- */
+  #boot{
+    position: fixed; inset: 0; z-index: 100;
+    background: #05080f;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    cursor: pointer;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #boot.done{ opacity: 0; visibility: hidden; pointer-events: none; }
+  #boot-log{
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--text-muted);
+    max-width: 480px;
+    width: 100%;
+  }
+  #boot-log .ln{
+    opacity: 0;
+    transform: translateY(3px);
+    animation: appear 0.35s ease forwards;
+    margin-bottom: 9px;
+    white-space: pre-wrap;
+  }
+  @keyframes appear{ to{ opacity: 1; transform: translateY(0); } }
+  #boot-log .prompt{ color: var(--accent); }
+  #boot-log .ok{ color: var(--ok); }
+  #boot-log .status{ color: var(--gold); font-weight: 500; }
+  #boot-log .cursor{
+    display: inline-block; width: 7px; height: 14px;
+    background: var(--accent);
+    vertical-align: -2px;
+    animation: blink 0.9s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity: 0; } }
+  #boot-skip{
+    position: absolute; bottom: 26px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.68em;
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
 
-        /* Data Panel Layout - Left Aligned for readability */
-        .data-panel {
-            background: var(--bg-panel);
-            border-radius: 8px;
-            padding: 30px;
-            border-left: 4px solid var(--accent);
-            margin-bottom: 30px;
-        }
+  /* ---------- page ---------- */
+  .container{
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 56px 20px 72px;
+  }
 
-        .data-row {
-            margin-bottom: 20px;
-        }
+  .card{
+    background: var(--bg-card);
+    border: 1px solid var(--accent-line);
+    border-radius: 14px;
+    padding: 52px 42px;
+    box-shadow: 0 24px 70px -20px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .card.reveal{
+    animation: rise 0.7s ease forwards;
+  }
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
 
-        .data-row:last-child {
-            margin-bottom: 0;
-        }
+  /* ---------- header ---------- */
+  .header-section{ text-align: center; margin-bottom: 38px; }
 
-        .data-label {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.8em;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            display: block;
-        }
+  .badge{
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.72em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--accent-line);
+    letter-spacing: 0.06em;
+    margin-bottom: 22px;
+  }
+  .badge .pulse{
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(56,189,248,0.6);
+    animation: pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(56,189,248,0.55); }
+    70%{ box-shadow: 0 0 0 6px rgba(56,189,248,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(56,189,248,0); }
+  }
 
-        .data-value {
-            font-size: 1.1em;
-            font-weight: 400;
-        }
+  .geo-tag{
+    font-family: var(--mono);
+    font-size: 0.68em;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+  .geo-tag b{ color: var(--accent); font-weight: 400; }
 
-        /* Interactive Map Container */
-        .map-container {
-            margin-top: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            overflow: hidden;
-            height: 280px;
-            width: 100%;
-            position: relative;
-        }
+  h1{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2.15em;
+    line-height: 1.22;
+    letter-spacing: 0.003em;
+    margin: 4px 0;
+  }
 
-        /* Using your exact map coordinates */
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            filter: invert(90%) hue-rotate(180deg) contrast(1.1); /* Gives the map a cool dark-mode UI look */
-        }
+  .divider{
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin: 18px 0;
+  }
+  .divider .line{ height: 1px; width: 44px; background: linear-gradient(90deg, transparent, var(--accent-line)); }
+  .divider .line.right{ background: linear-gradient(90deg, var(--accent-line), transparent); }
+  .divider svg{ width: 16px; height: 16px; opacity: 0.85; }
 
-        /* Button Styles */
-        .btn-calendar {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            border-radius: 6px;
-            text-decoration: none;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9em;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
+  /* ---------- data panel ---------- */
+  .data-panel{
+    background: var(--bg-panel);
+    border-radius: 10px;
+    padding: 30px 28px;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 26px;
+  }
 
-        .btn-calendar:hover {
-            background: var(--accent);
-            color: var(--bg-base);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
+  .data-row{ margin-bottom: 22px; }
+  .data-row:last-child{ margin-bottom: 0; }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8em; }
-            .card { padding: 40px 20px; }
-            .data-panel { padding: 20px; }
-        }
-    </style>
+  .data-label{
+    font-family: var(--mono);
+    font-size: 0.72em;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .data-label::before{ content: "["; color: var(--text-muted); margin-right: 4px; }
+  .data-label::after{ content: "]"; color: var(--text-muted); margin-left: 4px; }
+
+  .data-value{ font-size: 1.02em; color: var(--text-main); font-weight: 400; }
+  .data-value .sub{ display: block; font-size: 0.85em; color: var(--text-muted); margin-top: 3px; }
+
+  .data-row-inline{ display: flex; gap: 30px; flex-wrap: wrap; }
+  .data-row-inline .data-row{ flex: 1; min-width: 140px; }
+
+  /* ---------- map ---------- */
+  .map-container{
+    margin-top: 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 260px;
+    width: 100%;
+    position: relative;
+  }
+  .map-container iframe{
+    width: 100%; height: 100%; border: 0;
+    filter: invert(90%) hue-rotate(180deg) contrast(1.05) saturate(0.9);
+  }
+  .map-note{
+    font-family: var(--mono);
+    font-size: 0.68em;
+    color: var(--text-muted);
+    margin-top: 10px;
+    line-height: 1.55;
+  }
+  .map-note b{ color: var(--gold); font-weight: 400; }
+  .map-links{ margin-top: 10px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .map-links a{
+    font-family: var(--mono); font-size: 0.72em; color: var(--accent);
+    text-decoration: none; border-bottom: 1px dotted var(--accent-line);
+  }
+  .map-links a:hover{ border-bottom-color: var(--accent); }
+
+  /* ---------- calendar ---------- */
+  .btn-calendar{
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.88em;
+    text-align: center;
+    transition: all 0.25s ease;
+    letter-spacing: 0.06em;
+  }
+  .btn-calendar:hover{
+    background: var(--accent);
+    color: var(--bg-base);
+    box-shadow: 0 0 24px var(--accent-soft);
+  }
+  .calendar-alt{
+    text-align: center;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 0.7em;
+    color: var(--text-muted);
+  }
+  .calendar-alt a{ color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent-line); }
+
+  /* ---------- rsvp note ---------- */
+  .rsvp-note{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.92em;
+    color: var(--text-muted);
+    padding-top: 24px;
+    border-top: 1px dashed rgba(255,255,255,0.08);
+  }
+
+  /* ---------- share / QR ---------- */
+  .share-row{
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  #qr-box{
+    background: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    line-height: 0;
+    box-shadow: 0 0 0 1px var(--accent-line), 0 0 22px var(--accent-soft);
+  }
+  #qr-box canvas, #qr-box img{ display: block; width: 76px; height: 76px; }
+  .share-caption{
+    font-family: var(--mono);
+    font-size: 0.68em;
+    color: var(--text-muted);
+    max-width: 160px;
+  }
+  .share-caption b{ color: var(--accent); font-weight: 400; }
+
+  footer{
+    text-align: center;
+    margin-top: 22px;
+    font-family: var(--mono);
+    font-size: 0.68em;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 600px){
+    h1{ font-size: 1.7em; }
+    .card{ padding: 38px 22px; }
+    .data-panel{ padding: 22px 18px; }
+    .data-row-inline{ gap: 18px; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="grid-background"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="glow-background" aria-hidden="true"></div>
 
-    <div class="container">
-        <div class="card">
-            
-            <!-- Centered Header Section -->
-            <div class="header-section">
-                <div class="badge">SYS.INIT_UNION()</div>
-                <h1>Muhammad Sanusi Waziri</h1>
-                <div class="ampersand">&</div>
-                <h1>Husaina Abubakar Runka</h1>
-            </div>
+<!-- ================= BOOT SEQUENCE ================= -->
+<div id="boot" role="status" aria-label="Loading invitation">
+  <div id="boot-log"></div>
+  <div id="boot-skip">tap anywhere to skip</div>
+</div>
 
-            <!-- Tech UI Data Panel -->
-            <div class="data-panel">
-                <div class="data-row">
-                    <span class="data-label">[ DATE_RECORD ]</span> 
-                    <span class="data-value">Friday, 30th October 2026</span>
-                </div>
-                
-                <div class="data-row">
-                    <span class="data-label">[ TIMESTAMP ]</span> 
-                    <span class="data-value">11:00 AM</span>
-                </div>
-                
-                <div class="data-row">
-                    <span class="data-label">[ SPATIAL_COORDINATES ]</span> 
-                    <span class="data-value">
-                        Masallacin Alhaji Sabo Zuciya,<br>
-                        Near Central Market Roundabout, Kofar Kwaya, Katsina.
-                    </span>
-                    
-                    <!-- Exact Google Map Provided by User -->
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.453063864158!2d7.5992907999999995!3d12.970751199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x11b03b580aea7833%3A0x2fc4a20358873aac!2sKatsina%20Central%20Market!5e1!3m2!1sen!2sus!4v1787306682880!5m2!1sen!2sus" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="strict-origin-when-cross-origin">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Calendar Integration -->
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Muhammad+&+Husaina&dates=20261030T100000Z/20261030T120000Z&details=Join+us+to+celebrate+the+union+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka!&location=Katsina+Central+Market,+Katsina" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn-calendar">
-                SYNC_TO_CALENDAR
-            </a>
+<div class="container">
+  <div class="card" id="card">
 
-        </div>
+    <div class="header-section">
+      <span class="badge"><span class="pulse" aria-hidden="true"></span>SYS.INIT_UNION()</span>
+      <div class="geo-tag">geo: <b>12.9708° N, 7.5993° E</b> — Katsina, Nigeria</div>
+
+      <h1>Muhammad Sanusi Waziri</h1>
+
+      <div class="divider" aria-hidden="true">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" stroke="#38bdf8" stroke-width="1"/>
+        </svg>
+        <span class="line right"></span>
+      </div>
+
+      <h1>Husaina Abubakar Runka</h1>
     </div>
+
+    <div class="data-panel">
+      <div class="data-row-inline">
+        <div class="data-row">
+          <span class="data-label">Date_Record</span>
+          <div class="data-value">Friday, 30 Oct 2026</div>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Timestamp</span>
+          <div class="data-value">11:00 AM WAT</div>
+        </div>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">Spatial_Coordinates</span>
+        <div class="data-value">
+          Masallacin Alhaji Sabo Zuciya
+          <span class="sub">Near Central Roundabout, Kofar Kwaya, Katsina</span>
+        </div>
+
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.453063864158!2d7.5992907999999995!3d12.970751199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x11b03b580aea7833%3A0x2fc4a20358873aac!2sKatsina%20Central%20Market!5e1!3m2!1sen!2sus!4v1787306682880!5m2!1sen!2sus"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Map showing the wedding venue near Kofar Kwaya, Katsina">
+          </iframe>
+        </div>
+        <p class="map-note"><b>note:</b> pin set at the nearest confirmed landmark (Kofar Kwaya / Central Market). Use the links below for exact routing on the day.</p>
+        <div class="map-links">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=12.970751,7.599291" target="_blank" rel="noopener">→ directions (Google Maps)</a>
+          <a href="https://www.openstreetmap.org/?mlat=12.970751&mlon=7.599291#map=17/12.970751/7.599291" target="_blank" rel="noopener">→ view (OpenStreetMap)</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah%3A+Muhammad+%26+Husaina&dates=20261030T100000Z/20261030T130000Z&details=Join+us+to+celebrate+the+Nikkah+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka.&location=Masallacin+Alhaji+Sabo+Zuciya%2C+Near+Central+Roundabout%2C+Kofar+Kwaya%2C+Katsina"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn-calendar">
+      SYNC_TO_GOOGLE_CALENDAR
+    </a>
+    <div class="calendar-alt">using Outlook or Apple Calendar? <a id="ics-link" href="#" download="waziri-husaina-nikkah.ics">download .ics instead</a></div>
+
+    <p class="rsvp-note">Your presence would mean a great deal to us.<br>Kindly save the date — we look forward to celebrating with you.</p>
+
+    <div class="share-row">
+      <div id="qr-box"></div>
+      <div class="share-caption"><b>scan to reopen</b><br>this invite encodes its own live link — forward it to anyone.</div>
+    </div>
+
+    <footer>Muhammad Sanusi Waziri &amp; Husaina Abubakar Runka · Katsina, Nigeria</footer>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ================= live data-network canvas ================= */
+  (function(){
+    var canvas = document.getElementById('bg-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H, particles = [];
+    var COUNT = 0;
+
+    function resize(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      COUNT = Math.min(70, Math.floor((W * H) / 22000));
+      particles = [];
+      for (var i = 0; i < COUNT; i++){
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.18
+        });
+      }
+    }
+
+    function frame(){
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(56,189,248,0.55)';
+      for (var i = 0; i < particles.length; i++){
+        var p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      for (var i = 0; i < particles.length; i++){
+        for (var j = i + 1; j < particles.length; j++){
+          var a = particles[i], b = particles[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 130){
+            ctx.strokeStyle = 'rgba(56,189,248,' + (0.14 * (1 - dist / 130)) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      if (!reduced) requestAnimationFrame(frame);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    frame();
+    if (reduced){
+      // draw a single static frame for reduced-motion users
+      frame();
+    }
+  })();
+
+  /* ================= boot sequence ================= */
+  (function(){
+    var boot = document.getElementById('boot');
+    var log = document.getElementById('boot-log');
+    var card = document.getElementById('card');
+
+    var lines = [
+      { html: '<span class="prompt">$</span> ssh union@katsina.ng' },
+      { html: 'authenticating <span class="ok">hearts.db</span> ......... <span class="ok">OK</span>' },
+      { html: 'loading profile: Muhammad Sanusi Waziri ... <span class="ok">OK</span>' },
+      { html: 'loading profile: Husaina Abubakar Runka .... <span class="ok">OK</span>' },
+      { html: 'merging records ............................ <span class="ok">OK</span>' },
+      { html: 'compiling blessings ......................... <span class="ok">OK</span>' },
+      { html: '<span class="status">STATUS: MARRIAGE_CONFIRMED ✓</span>' },
+      { html: 'redirecting to invitation<span class="cursor"></span>' }
+    ];
+
+    function finish(){
+      boot.classList.add('done');
+      card.classList.add('reveal');
+      boot.removeEventListener('click', finish);
+      document.removeEventListener('keydown', keyFinish);
+    }
+    function keyFinish(){ finish(); }
+
+    boot.addEventListener('click', finish);
+    document.addEventListener('keydown', keyFinish);
+
+    if (reduced){
+      finish();
+      return;
+    }
+
+    var i = 0;
+    function next(){
+      if (i >= lines.length){
+        setTimeout(finish, 550);
+        return;
+      }
+      var div = document.createElement('div');
+      div.className = 'ln';
+      div.innerHTML = lines[i].html;
+      log.appendChild(div);
+      i++;
+      setTimeout(next, 260);
+    }
+    setTimeout(next, 300);
+  })();
+
+  /* ================= QR code (self-linking) ================= */
+  (function(){
+    try{
+      var url = window.location.href.split('#')[0];
+      new QRCode(document.getElementById('qr-box'), {
+        text: url,
+        width: 76,
+        height: 76,
+        colorDark: '#090e17',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }catch(e){
+      var box = document.getElementById('qr-box');
+      if (box) box.closest('.share-row').style.display = 'none';
+    }
+  })();
+
+  /* ================= ICS download ================= */
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function toICSDate(d){
+    return d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+  }
+  var start = new Date("2026-10-30T11:00:00+01:00");
+  var end = new Date("2026-10-30T14:00:00+01:00");
+  var ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Waziri-Husaina Nikkah//EN',
+    'BEGIN:VEVENT',
+    'UID:waziri-husaina-nikkah-2026@invite',
+    'DTSTAMP:' + toICSDate(new Date()),
+    'DTSTART:' + toICSDate(start),
+    'DTEND:' + toICSDate(end),
+    'SUMMARY:Nikkah of Muhammad Sanusi Waziri & Husaina Abubakar Runka',
+    'DESCRIPTION:Nikkah ceremony. Venue: Masallacin Alhaji Sabo Zuciya\\, Near Central Roundabout\\, Kofar Kwaya\\, Katsina.',
+    'LOCATION:Masallacin Alhaji Sabo Zuciya\\, Near Central Roundabout\\, Kofar Kwaya\\, Katsina\\, Nigeria',
+    'GEO:12.970751;7.599291',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+  document.getElementById('ics-link').setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics));
+</script>
 
 </body>
 </html>
