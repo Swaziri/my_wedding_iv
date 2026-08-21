@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation | Muhammad & Husaina</title>
     
-    <!-- Import Tech Fonts for Better Readability -->
+    <!-- Fonts: Inter for clean UI, Fira Code for Tech data -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         /* Base Reset */
@@ -20,45 +19,38 @@
         }
 
         :root {
-            --bg-base: #0a192f;
-            --bg-card: rgba(17, 34, 64, 0.9);
-            --text-main: #ccd6f6; /* Soft off-white for highly readable main text */
-            --text-accent: #64ffda; /* Neon teal for tech highlights */
-            --text-dim: #8892b0;
+            --bg-base: #090e17;
+            --bg-card: rgba(16, 24, 39, 0.85);
+            --bg-panel: rgba(30, 41, 59, 0.6);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Modern UI Blue */
+            --accent-glow: rgba(56, 189, 248, 0.2);
         }
 
         body, html {
-            font-family: 'Fira Code', monospace; 
-            background-color: var(--bg-base); 
-            color: var(--text-main); 
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
             overflow-x: hidden;
             height: 100%;
             line-height: 1.6;
         }
 
-        /* Subtle GIS / Data Grid Background */
+        /* Subtle UI Grid Background */
         .grid-background {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             background-image:
-                linear-gradient(to right, rgba(100, 255, 218, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-        }
-        
-        /* Radar / Topo overlay */
-        .topo-overlay {
-            position: fixed;
-            top: -50%; left: -50%; width: 200vw; height: 200vh;
-            background: radial-gradient(circle at center, transparent 40%, rgba(100,255,218,0.02) 41%, transparent 42%);
-            background-size: 200px 200px;
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
             z-index: -1;
         }
 
         /* Main Container */
         .container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 40px auto;
             padding: 20px;
             display: flex;
@@ -67,208 +59,185 @@
             min-height: 85vh;
         }
 
-        /* Invitation Card */
+        /* UI Card */
         .card {
             background: var(--bg-card);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 12px;
             padding: 50px 40px;
-            text-align: left; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--accent-glow);
+            backdrop-filter: blur(12px);
             width: 100%;
         }
 
-        /* Typography */
-        .system-status {
-            font-size: 0.85em;
-            color: var(--text-dim);
-            margin-bottom: 30px;
-            border-bottom: 1px dashed var(--text-dim);
-            padding-bottom: 10px;
+        /* Header Section - CENTERED */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75em;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
         h1 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 2.4em;
-            color: var(--text-main);
+            font-size: 2.2em;
+            font-weight: 300;
             margin: 5px 0;
-            font-weight: 400;
+            letter-spacing: 1px;
         }
 
         .ampersand {
             font-size: 1.5em;
-            color: var(--text-accent);
-            margin: 10px 0;
-            padding-left: 10px;
+            color: var(--accent);
+            margin: 15px 0;
+            font-family: 'Fira Code', monospace;
         }
 
-        /* Data Details Section */
-        .data-block {
-            background: #020c1b;
-            border-left: 3px solid var(--text-accent);
-            padding: 25px;
-            margin: 35px 0;
-            border-radius: 4px;
-            font-size: 1.05em;
+        /* Data Panel Layout - Left Aligned for readability */
+        .data-panel {
+            background: var(--bg-panel);
+            border-radius: 8px;
+            padding: 30px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 30px;
         }
 
         .data-row {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 20px;
         }
 
-        .data-key {
-            color: var(--text-accent);
-            font-size: 0.85em;
+        .data-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .data-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8em;
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            display: block;
         }
 
         .data-value {
-            color: var(--text-main);
-            font-weight: 600;
+            font-size: 1.1em;
+            font-weight: 400;
         }
 
         /* Interactive Map Container */
         .map-container {
-            margin-top: 20px;
-            border: 1px solid rgba(100, 255, 218, 0.3);
-            border-radius: 4px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
             overflow: hidden;
-            height: 250px;
+            height: 280px;
             width: 100%;
             position: relative;
         }
 
+        /* Using your exact map coordinates */
         .map-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
-            filter: grayscale(20%) contrast(1.1);
-        }
-
-        .map-overlay-text {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(2, 12, 27, 0.8);
-            color: var(--text-accent);
-            padding: 4px 8px;
-            font-size: 0.7em;
-            border: 1px solid var(--text-accent);
-            border-radius: 3px;
-            pointer-events: none; 
+            filter: invert(90%) hue-rotate(180deg) contrast(1.1); /* Gives the map a cool dark-mode UI look */
         }
 
         /* Button Styles */
         .btn-calendar {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 25px;
-            background: transparent;
-            color: var(--text-accent);
-            border: 1px solid var(--text-accent);
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            text-align: center;
+            display: block;
             width: 100%;
+            padding: 16px;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
 
         .btn-calendar:hover {
-            background: rgba(100, 255, 218, 0.1);
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
-        }
-
-        /* Animations */
-        .typing-effect {
-            display: inline-block;
-            border-right: 2px solid var(--text-accent);
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--text-accent); }
+            background: var(--accent);
+            color: var(--bg-base);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 1.8em; }
-            .card { padding: 30px 20px; }
-            .data-block { padding: 15px; font-size: 0.95em; }
+            .card { padding: 40px 20px; }
+            .data-panel { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="grid-background"></div>
-    <div class="topo-overlay"></div>
 
     <div class="container">
         <div class="card">
             
-            <div class="system-status">
-                <span class="typing-effect">root@server:~$ ./init_wedding.sh</span>
+            <!-- Centered Header Section -->
+            <div class="header-section">
+                <div class="badge">SYS.INIT_UNION()</div>
+                <h1>Muhammad Sanusi Waziri</h1>
+                <div class="ampersand">&</div>
+                <h1>Husaina Abubakar Runka</h1>
             </div>
-            
-            <h1>Muhammad Sanusi Waziri</h1>
-            <div class="ampersand">&&</div>
-            <h1>Husaina Abubakar Runka</h1>
 
-            <div class="data-block">
+            <!-- Tech UI Data Panel -->
+            <div class="data-panel">
                 <div class="data-row">
-                    <span class="data-key">const date = </span> 
-                    <span class="data-value">"Friday, 30th October 2026";</span>
+                    <span class="data-label">[ DATE_RECORD ]</span> 
+                    <span class="data-value">Friday, 30th October 2026</span>
                 </div>
                 
                 <div class="data-row">
-                    <span class="data-key">const time = </span> 
-                    <span class="data-value">"11:00 AM (WAT)";</span>
+                    <span class="data-label">[ TIMESTAMP ]</span> 
+                    <span class="data-value">11:00 AM</span>
                 </div>
                 
                 <div class="data-row">
-                    <span class="data-key">const venue_coordinates = </span> 
+                    <span class="data-label">[ SPATIAL_COORDINATES ]</span> 
                     <span class="data-value">
-                        "Masallacin Alhaji Sabo Zuciya,<br>
-                        Near Central Market Roundabout, Kofar Kwaya, Katsina.";
+                        Masallacin Alhaji Sabo Zuciya,<br>
+                        Near Central Market Roundabout, Kofar Kwaya, Katsina.
                     </span>
                     
-                    <!-- Direct Coordinate / Location Query Map Embed -->
+                    <!-- Exact Google Map Provided by User -->
                     <div class="map-container">
-                        <div class="map-overlay-text">GIS LOCATION LINK ACTIVE</div>
                         <iframe 
-                            src="https://maps.google.com/maps?q=Central+Market+Roundabout,+Katsina,+Nigeria&t=k&z=18&ie=UTF8&iwloc=&output=embed" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.453063864158!2d7.5992907999999995!3d12.970751199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x11b03b580aea7833%3A0x2fc4a20358873aac!2sKatsina%20Central%20Market!5e1!3m2!1sen!2sus!4v1787306682880!5m2!1sen!2sus" 
                             allowfullscreen="" 
                             loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                            referrerpolicy="strict-origin-when-cross-origin">
                         </iframe>
                     </div>
                 </div>
             </div>
-
-            <p style="color: var(--text-dim); font-size: 0.85em; text-align: center; margin-bottom: 20px;">
-                /* We look forward to successfully compiling this union with you */
-            </p>
             
-            <!-- Calendar Link -->
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Muhammad+&+Husaina&dates=20261030T100000Z/20261030T120000Z&details=Join+us+to+celebrate+the+union+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka!&location=Central+Market+Roundabout,+Katsina" 
+            <!-- Calendar Integration -->
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Muhammad+&+Husaina&dates=20261030T100000Z/20261030T120000Z&details=Join+us+to+celebrate+the+union+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka!&location=Katsina+Central+Market,+Katsina" 
                target="_blank" 
                rel="noopener noreferrer" 
                class="btn-calendar">
-                > [ EXECUTE: ADD_TO_CALENDAR ]
+                SYNC_TO_CALENDAR
             </a>
 
         </div>
@@ -276,5 +245,3 @@
 
 </body>
 </html>
-
-```
