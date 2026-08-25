@@ -165,6 +165,14 @@
   }
   .geo-tag b{ color: var(--accent); font-weight: 400; }
 
+  .human-tagline{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95em;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+
   h1{
     font-family: var(--serif);
     font-style: italic;
@@ -242,6 +250,71 @@
   }
   .map-links a:hover{ border-bottom-color: var(--accent); }
 
+  /* ---------- countdown ---------- */
+  .countdown-block{ margin-bottom: 26px; }
+  .countdown-warm{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  .countdown{
+    display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .cd-unit{
+    min-width: 68px; text-align: center;
+    background: var(--bg-panel);
+    border: 1px solid var(--accent-line);
+    border-radius: 8px;
+    padding: 14px 10px;
+  }
+  .cd-num{
+    font-family: var(--mono); font-weight: 500;
+    font-size: 1.7em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-label{
+    font-family: var(--mono); font-size: 0.62em;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-top: 4px;
+  }
+
+  /* ---------- thank-you panel (shown once the date has passed) ---------- */
+  .thankyou-panel{
+    display: none;
+    background: var(--bg-panel);
+    border-radius: 10px;
+    padding: 30px 28px;
+    border-left: 3px solid var(--gold);
+    text-align: center;
+  }
+  .thankyou-panel .ty-status{
+    font-family: var(--mono);
+    font-size: 0.75em;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+  }
+  .thankyou-panel .ty-heading{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6em;
+    color: var(--text-main);
+    margin-bottom: 10px;
+  }
+  .thankyou-panel .ty-msg{
+    font-size: 0.92em;
+    color: var(--text-muted);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
   /* ---------- calendar ---------- */
   .btn-calendar{
     display: block;
@@ -282,31 +355,6 @@
     border-top: 1px dashed rgba(255,255,255,0.08);
   }
 
-  /* ---------- share / QR ---------- */
-  .share-row{
-    margin-top: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  #qr-box{
-    background: #fff;
-    padding: 8px;
-    border-radius: 8px;
-    line-height: 0;
-    box-shadow: 0 0 0 1px var(--accent-line), 0 0 22px var(--accent-soft);
-  }
-  #qr-box canvas, #qr-box img{ display: block; width: 76px; height: 76px; }
-  .share-caption{
-    font-family: var(--mono);
-    font-size: 0.68em;
-    color: var(--text-muted);
-    max-width: 160px;
-  }
-  .share-caption b{ color: var(--accent); font-weight: 400; }
-
   footer{
     text-align: center;
     margin-top: 22px;
@@ -321,6 +369,8 @@
     .card{ padding: 38px 22px; }
     .data-panel{ padding: 22px 18px; }
     .data-row-inline{ gap: 18px; }
+    .cd-unit{ min-width: 58px; padding: 10px 6px; }
+    .cd-num{ font-size: 1.3em; }
   }
 </style>
 </head>
@@ -341,6 +391,7 @@
     <div class="header-section">
       <span class="badge"><span class="pulse" aria-hidden="true"></span>SYS.INIT_UNION()</span>
       <div class="geo-tag">geo: <b>12.9708° N, 7.5993° E</b> — Katsina, Nigeria</div>
+      <p class="human-tagline">coded with logic, sealed with love</p>
 
       <h1>Muhammad Sanusi Waziri</h1>
 
@@ -391,6 +442,24 @@
       </div>
     </div>
 
+    <!-- ================= COUNTDOWN ================= -->
+    <div class="countdown-block" id="countdownBlock">
+      <p class="countdown-warm">— every second brings us closer —</p>
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Days</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Hrs</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Min</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Sec</div></div>
+      </div>
+    </div>
+
+    <!-- ================= THANK YOU (shown after the date passes) ================= -->
+    <div class="thankyou-panel" id="thankyouPanel">
+      <div class="ty-status">STATUS: FATIHA_COMPLETE ✓</div>
+      <div class="ty-heading">Alhamdulillah</div>
+      <p class="ty-msg">Thank you for attending our Wedding Fatiha. Your presence, prayers, and support meant the world to us — may Allah reward you abundantly and bless our union through your du'as. Ameen.</p>
+    </div>
+
     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah%3A+Muhammad+%26+Husaina&dates=20261030T100000Z/20261030T130000Z&details=Join+us+to+celebrate+the+Nikkah+of+Muhammad+Sanusi+Waziri+and+Husaina+Abubakar+Runka.&location=Masallacin+Alhaji+Sabo+Zuciya%2C+Near+Central+Roundabout%2C+Kofar+Kwaya%2C+Katsina"
        target="_blank"
        rel="noopener noreferrer"
@@ -399,19 +468,13 @@
     </a>
     <div class="calendar-alt">using Outlook or Apple Calendar? <a id="ics-link" href="#" download="waziri-husaina-nikkah.ics">download .ics instead</a></div>
 
-    <p class="rsvp-note">Your presence would mean a great deal to us.<br>Kindly save the date — we look forward to celebrating with you.</p>
-
-    <div class="share-row">
-      <div id="qr-box"></div>
-      <div class="share-caption"><b>scan to reopen</b><br>this invite encodes its own live link — forward it to anyone.</div>
-    </div>
+    <p class="rsvp-note">Your presence would mean the world to us.<br>Kindly save the date — we can't wait to celebrate this day with you.</p>
 
     <footer>Muhammad Sanusi Waziri &amp; Husaina Abubakar Runka · Katsina, Nigeria</footer>
 
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -471,7 +534,6 @@
     window.addEventListener('resize', resize);
     frame();
     if (reduced){
-      // draw a single static frame for reduced-motion users
       frame();
     }
   })();
@@ -525,22 +587,38 @@
     setTimeout(next, 300);
   })();
 
-  /* ================= QR code (self-linking) ================= */
+  /* ================= countdown + thank-you toggle ================= */
   (function(){
-    try{
-      var url = window.location.href.split('#')[0];
-      new QRCode(document.getElementById('qr-box'), {
-        text: url,
-        width: 76,
-        height: 76,
-        colorDark: '#090e17',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.M
-      });
-    }catch(e){
-      var box = document.getElementById('qr-box');
-      if (box) box.closest('.share-row').style.display = 'none';
+    var weddingDate = new Date("2026-10-30T11:00:00+01:00").getTime();
+    var countdownBlock = document.getElementById('countdownBlock');
+    var thankyouPanel = document.getElementById('thankyouPanel');
+    var finished = false;
+
+    function tick(){
+      var now = Date.now();
+      var diff = weddingDate - now;
+
+      if (diff <= 0){
+        if (!finished){
+          finished = true;
+          countdownBlock.style.display = 'none';
+          thankyouPanel.style.display = 'block';
+        }
+        clearInterval(timer);
+        return;
+      }
+
+      var d = Math.floor(diff / (1000*60*60*24));
+      var h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      var m = Math.floor((diff % (1000*60*60)) / (1000*60));
+      var s = Math.floor((diff % (1000*60)) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
     }
+    tick();
+    var timer = setInterval(tick, 1000);
   })();
 
   /* ================= ICS download ================= */
